@@ -297,7 +297,7 @@ This puts the mark at the end, and point at the beginning."
          (me (match-end 2))
          (pattern (format "]%s\\(]\\)" (buffer-substring mb me))))
     (save-match-data
-      (if (re-search-forward pattern end t)
+      (if (re-search-forward pattern end 'move)
           (progn
             (setq me (match-end 1))
             (put-text-property
