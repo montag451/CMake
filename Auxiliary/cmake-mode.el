@@ -295,13 +295,13 @@ This puts the mark at the end, and point at the beginning."
   ;; opening brackets
   (let* ((mb (match-beginning 2))
          (me (match-end 2))
-         (pattern (format "]%s\\(]\\)" (buffer-substring mb me))))
+         (cb (format "]%s]" (buffer-substring mb me))))
     (save-match-data
-      (if (re-search-forward pattern end 'move)
+      (if (search-forward cb end 'move)
           (progn
-            (setq me (match-end 1))
+            (setq me (match-end 0))
             (put-text-property
-             (match-beginning 1)
+             (1- me)
              me
              'syntax-table
              (string-to-syntax syntax)))
